@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Health Insurance Risk Cakculator For Web</title>
+        <h1>Health Insurance Risk Calculator</h1>
+        <p>Instructions:<br /><br /> The Customer's Personal health that includes Age, Body Mass Index(BMI), Blood Pressure and History of Family Diseases. </p>
+        <body>
+            <h2> Patient No. 1</h2>
+            <label> Please indicate the age range. </label>
+            <select id="question1">
+                <option value="0">Less than 30 years</option>
+                <option value="10">Less than 45 years</option>
+                <option value="20">Less than 60 years</option>
+                <option value="30">Over than 60 years</option>
+            </select>
+            <br /><br />
+            <label> Please Enter Your Weight in Pounds:</label><br /><input id="question2" type="number" name="Weight"><br /><br />
+            <label> Please Enter Your Height in Inches:</label><br /><input id="question3" type="number" name="Height"><br /><br />
+            <label> Please Enter Your Blood Pressure:</label>
+            <select id="question4">
+                <option value="0">Normal</option>
+                <option value="15">Elevated</option>
+                <option value="30">Stage 1</option>
+                <option value="75"> Stage 2</option>
+                <option value="100"> Crisis</option>
+                </select>
+                <br /><br />
+                <label> History of Family Diseases</label>
+                <select id="question 5">
+                 <option value="10">Diabetes</option>
+                 <option value="10">Cancer</option>
+                  <option value="10">Alzheimer's</option>
+                </select> 
+                <br /><br />
+                <button onclick="calculateStuff()">Submit</button>
+                <div id="BMIID"></div>
+                <div id="riskMessageId"></div>
+                
+                <script>
+                    function calculateStuff() {
+                        let question1Response = document.getElementById("question1").selectedOptions[0].value
+                        let question2Response = document.getElementById("question2").value
+                        let question3Response = document.getElementById("question3").value
+                        let question4Response = document.getElementById("question4").selectedOptions[0].value
+                        let question5Response = document.getElementById("question5").selectedOptions[0].value
+                        let weight= question2Response*0.454
+                        let heightsquared = (question3Response*0.0254)**2
+                        let BMI = weight/heightsquared
+                        let Message = "";
+                        if (BMI <=20) {
+                            Message = "You are at Low Risk."
+                        } else if (BMI <=50) {
+                            Message = "You are at Moderate Risk."
+                        } else if (BMI <=75) {
+                            Message = "You are at High Risk."
+                        } else {
+                            Message = "You are Uninsurable. Sorry for the inconvienence"
+                        }
+                        
+                        document.getElementById("BMIID").innerHTML = BMI
+                        console.log(Message);
+                        document.getElementById("riskMessageId").innerHTML = Message;
+                    }
+                </script>
+        </body>
+    </head>
+</html>
